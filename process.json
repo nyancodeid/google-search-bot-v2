@@ -1,6 +1,6 @@
 {
   "apps": [{
-    "name": "server",
+    "name": "nyan-server",
     "script": "server.js",
     "error_file": "server.pm.error.log",
     "log_date_format"  : "YYYY-MM-DD HH:mm Z",
@@ -8,7 +8,7 @@
       "NODE_ENV": "production"
     }
   }, {
-    "name": "api",
+    "name": "nyan-api",
     "script": "api.js",
     "error_file": "api.pm.error.log",
     "log_date_format"  : "YYYY-MM-DD HH:mm Z",
