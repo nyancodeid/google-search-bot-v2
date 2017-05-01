@@ -28,9 +28,9 @@ app.get('/:keyword', function(req, res) {
                 if (title != "" || title != null || title != undefined) {
                     if (title != "") {
                         responseJson.push({
-                            title: title,
-                            url: url,
-                            desc: desc
+                            title: title.replace(/\_/g, "&#95;"),
+                            url: url.replace('https://google.com/url?q=', ''),
+                            desc: desc.replace(/\_/g, "&#95;")
                         });
                     }
                 }
