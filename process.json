@@ -1,0 +1,19 @@
+{
+  "apps": [{
+    "name": "server",
+    "script": "server.js",
+    "error_file": "server.pm.error.log",
+    "log_date_format"  : "YYYY-MM-DD HH:mm Z",
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }, {
+    "name": "api",
+    "script": "api.js",
+    "error_file": "api.pm.error.log",
+    "log_date_format"  : "YYYY-MM-DD HH:mm Z",
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }]
+}
