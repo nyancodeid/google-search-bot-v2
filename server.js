@@ -24,7 +24,7 @@ db.schema.createTableIfNotExists('users', function(table) {
 
 var token = '327544791:AAFisTOjKFuZH4FcuAXoWF5hgDvvxJFpd5I';
 var bot = new TelegramBot(token, {polling: true});
-
+var apiUrl = "http://localhost:8081/search/";
 
 bot.onText(/\/search (.*)/, function(msg, match) {
     /*
@@ -63,7 +63,7 @@ bot.onText(/\/search (.*)/, function(msg, match) {
     
     bot.sendChatAction(fromId, "typing");
   
-    request('https://nyanmailer-ryanaunur.c9users.io:8081/' + match[1], function(error, response, body) {
+    request(apiUrl + match[1], function(error, response, body) {
         if (!error) {
             var jsonres = JSON.parse(body);
             var count;
@@ -182,7 +182,7 @@ bot.on('inline_query', function(msg) {
         var results = [];
         
       
-        request('https://nyanmailer-ryanaunur.c9users.io:8081/' + query, function(error, response, body) {
+        request(apiUrl + query, function(error, response, body) {
             if (!error) {
                 var jsonres = JSON.parse(body);
                 var count, items = [];

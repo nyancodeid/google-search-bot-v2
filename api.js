@@ -3,19 +3,18 @@ var request = require("request");
 var cheerio = require("cheerio");
 var app     = express();
 
-app.get('/:keyword', function(req, res) {
+app.get('/search/:keyword', function(req, res) {
     
-    var reqUrl = req.params.keyword.replace("%20", "+");
+    var query = req.params.keyword.replace("%20", "+");
     var google = {
         url: "https://google.com",
         search: "/search?q="
     };
-    console.log("Me!");
-    console.log((!req.query.page));
+    console.log("search with keyword : " + query);
     
     var responseJson = [];
     
-    request(google.url + google.search + reqUrl, function(error, response, html) {
+    request(google.url + google.search + query, function(error, response, html) {
         if (!error) {
             var $ = cheerio.load(html);
             var title, url, desc;
@@ -28,14 +27,13 @@ app.get('/:keyword', function(req, res) {
                 if (title != "" || title != null || title != undefined) {
                     if (title != "") {
                         responseJson.push({
-                            title: title.replace(/\_/g, "&#95;"),
-                            url: url.replace('https://google.com/url?q=', ''),
-                            desc: desc.replace(/\_/g, "&#95;")
+                            title: title.replace(/_/g, "&#95;"),
+                            url: url.replace('https://google.com/url?q=', '').replace(/_/g, "&#95;"),
+                            desc: desc.replace(/_/g, "&#95;")
                         });
                     }
                 }
             });
-            
             res.json(responseJson);
         }
     });

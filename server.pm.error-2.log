@@ -1,0 +1,30 @@
+2017-05-01 15:46 +00:00: Mon, 01 May 2017 15:46:57 GMT node-telegram-bot-api deprecated Node.js v5.x and below will no longer be supported in the future at module.js:409:26
+2017-05-01 17:19 +00:00: You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+Error: ETELEGRAM: 400 Bad Request: can't parse message text: Can't find end of the entity starting at byte offset 165
+    at TelegramError.Error (native)
+    at TelegramError.BaseError (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/lib/errors.js:22:108)
+    at new TelegramError (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/lib/errors.js:90:117)
+    at /home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/lib/telegram.js:213:15
+    at tryCatcher (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/promise.js:512:31)
+    at Promise._settlePromise (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/promise.js:569:18)
+    at Promise._settlePromise0 (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/promise.js:614:10)
+    at Promise._settlePromises (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/promise.js:693:18)
+    at Async._drainQueue (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/async.js:133:16)
+    at Async._drainQueues (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/async.js:143:10)
+    at Immediate.Async.drainQueues [as _onImmediate] (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/async.js:17:14)
+    at processImmediate [as _immediateCallback] (timers.js:383:17)
+2017-05-01 17:19 +00:00: Unhandled rejection Error: ETELEGRAM: 400 Bad Request: can't parse message text: Can't find end of the entity starting at byte offset 264
+    at TelegramError.Error (native)
+    at TelegramError.BaseError (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/lib/errors.js:22:108)
+    at new TelegramError (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/lib/errors.js:90:117)
+    at /home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/lib/telegram.js:213:15
+    at tryCatcher (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/promise.js:512:31)
+    at Promise._settlePromise (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/promise.js:569:18)
+    at Promise._settlePromise0 (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/promise.js:614:10)
+    at Promise._settlePromises (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/promise.js:693:18)
+    at Async._drainQueue (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/async.js:133:16)
+    at Async._drainQueues (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/async.js:143:10)
+    at Immediate.Async.drainQueues [as _onImmediate] (/home/ubuntu/workspace/gBot/node_modules/node-telegram-bot-api/node_modules/bluebird/js/release/async.js:17:14)
+    at processImmediate [as _immediateCallback] (timers.js:383:17)
