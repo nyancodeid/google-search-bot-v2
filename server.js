@@ -1,5 +1,7 @@
 var TelegramBot = require('node-telegram-bot-api');
+var urlToImage = require('url-to-image');
 var request = require("request");
+var fs = require("fs");
 var db = require('knex')({
   dialect: 'sqlite3',
   connection: {
@@ -144,6 +146,43 @@ bot.onText(/\/start/, function(msg, match) {
     
     bot.sendMessage(fromId, "Just type \n /search Your Keyword");
   
+});
+
+bot.onText(/\/ss (https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})/, function(msg, match) {
+    var fromId = msg.from.id;
+    var randId = Math.round(Math.random() * 1000000);
+    
+    db('users').where({
+        t_id: msg.from.id
+    }).select('id').then(function(rows) {
+        if (rows.length == 0) {
+            db.insert({name: msg.from.first_name, t_id: msg.from.id, limit: 10, count: 0}).into('users').then(function(rows) {
+                console.log("users " + msg.from.first_name + " registered on Google Search Bot");
+                
+                db('users').where({t_id: msg.from.id}).increment('count', 1).then(function() {});
+            });
+            
+            db.insert('search').insert({keyword: match[1], user_id: rows[0].id}).into('search').then(function(rows) {
+                console.log("searched " + match[1] + " search id " + rows[0]);
+            });
+        } else if (rows.length == 1) {
+            db.insert('search').insert({keyword: match[1], user_id: rows[0].id}).into('search').then(function(rows) {
+                console.log("searched " + match[1] + " search id " + rows[0]); 
+                
+                db('users').where({t_id: msg.from.id}).increment('count', 1).then(function() {});
+            });
+        }
+    });
+    
+    urlToImage(match[1], 'temp'+randId+'.png').then(function() {
+        bot.sendChatAction(fromId, "upload_photo");
+        
+        bot.sendPhoto(fromId, 'temp'+randId+'.png', {caption: "From: " + match[1]}).then(function() {
+            fs.unlink('temp' + randId + '.png');
+        }); 
+    }).catch(function(err) {
+        console.error(err);
+    });
 });
 
 bot.on('inline_query', function(msg) {
