@@ -25,7 +25,7 @@ db.schema.createTableIfNotExists('users', function(table) {
 
 
 var token = '327544791:AAFisTOjKFuZH4FcuAXoWF5hgDvvxJFpd5I';
-var bot = new TelegramBot(token, {polling: true});
+var bot = new TelegramBot(token, {polling: {interval: 500}});
 var apiUrl = "http://localhost:8081/search/";
 
 bot.onText(/\/search (.*)/, function(msg, match) {
