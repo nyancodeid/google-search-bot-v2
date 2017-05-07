@@ -144,7 +144,7 @@ bot.onText(/\/start/, function(msg, match) {
         }
     });
     
-    bot.sendMessage(fromId, "Just type \n /search Your Keyword");
+    bot.sendMessage(fromId, "Welcome to Google Search Bot, you can Search everything on this \n\n Command List \n\n/start - Start\n/search - Search Now\n/setlimit - Set Limit Search Result 1 - 10\n/status - Show Status\n/ss - Get Web Screenshot\n\nExample:\n\nSearch \"Bot Telegram\"\n`/search Bot Telegram`\n\nScreenshot Web:\n`/ss https://google.co.id`", {parse_mode: 'markdown'});
   
 });
 
@@ -183,6 +183,34 @@ bot.onText(/\/ss (https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9
     }).catch(function(err) {
         console.error(err);
     });
+});
+
+bot.onText(/\/users/, function(msg, match) {
+    var fromId = msg.from.id;
+    var message = "*Users* : \n\n";
+    
+    if (fromId == 335664535 && msg.from.first_name == "Ryan Aunur") {
+        db('users').then(function(rows) {
+            for (var i = 0; i < rows.length; i++) {
+                message += "*" + rows[i].t_id + "* | _" + rows[i].name + "_ | *" + rows[i].count + "* \n";
+            }
+            bot.sendMessage(fromId, message, {parse_mode: 'markdown'});
+        });
+    }
+});
+
+bot.onText(/\/searched/, function(msg, match) {
+    var fromId = msg.from.id;
+    var message = "*Search* : \n\n";
+    
+    if (fromId == 335664535 && msg.from.first_name == "Ryan Aunur") {
+        db('search').then(function(rows) {
+            for (var i = 0; i < rows.length; i++) {
+                message += "*" + rows[i].id + "* | _" + rows[i].keyword + "_ \n";
+            }
+            bot.sendMessage(fromId, message, {parse_mode: 'markdown'});
+        });
+    }
 });
 
 bot.on('inline_query', function(msg) {

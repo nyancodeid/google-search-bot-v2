@@ -27,9 +27,9 @@ app.get('/search/:keyword', function(req, res) {
                 if (title != "" || title != null || title != undefined) {
                     if (title != "") {
                         responseJson.push({
-                            title: title.replace(/_/g, "&#95;"),
-                            url: url.replace('https://google.com/url?q=', '').replace(/_/g, "&#95;"),
-                            desc: desc.replace(/_/g, "&#95;")
+                            title: title.replace(/_/g, "&#95;").replace(/`/g, ""),
+                            url: url.replace('https://google.com/url?q=', '').replace(/_/g, "&#95;").replace(/`/g, ""),
+                            desc: desc.replace(/_/g, "&#95;").replace(/`/g, "")
                         });
                     }
                 }
